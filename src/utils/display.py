@@ -51,6 +51,8 @@ def print_trading_output(result: dict) -> None:
                 "BEARISH": Fore.RED,
                 "NEUTRAL": Fore.YELLOW,
             }.get(signal_type, Fore.WHITE)
+
+            signal_type = signal_type = signal_type.replace("BULLISH", "看涨").replace("BEARISH", "看跌").replace("NEUTRAL", "中性")
             
             # Get reasoning if available
             reasoning_str = ""
@@ -102,7 +104,7 @@ def print_trading_output(result: dict) -> None:
         print(
             tabulate(
                 table_data,
-                headers=[f"{Fore.WHITE}Agent", "Signal", "Confidence", "Reasoning"],
+                headers=[f"{Fore.WHITE}Agent(分析师)", "Signal(信号)", "Confidence(置信度)", "Reasoning(理由)"],
                 tablefmt="grid",
                 colalign=("left", "center", "right", "left"),
             )
@@ -138,14 +140,16 @@ def print_trading_output(result: dict) -> None:
             if current_line:
                 wrapped_reasoning += current_line
 
+        action = action.replace("BUY", "买入").replace("SELL", "卖出").replace("HOLD", "持有").replace("COVER", "平仓").replace("SHORT", "做空")
+
         decision_data = [
-            ["Action", f"{action_color}{action}{Style.RESET_ALL}"],
-            ["Quantity", f"{action_color}{decision.get('quantity')}{Style.RESET_ALL}"],
+            ["Action(操作)", f"{action_color}{action}{Style.RESET_ALL}"],
+            ["Quantity(数量)", f"{action_color}{decision.get('quantity')}{Style.RESET_ALL}"],
             [
-                "Confidence",
+                "Confidence(置信度)",
                 f"{Fore.WHITE}{decision.get('confidence'):.1f}%{Style.RESET_ALL}",
             ],
-            ["Reasoning", f"{Fore.WHITE}{wrapped_reasoning}{Style.RESET_ALL}"],
+            ["Reasoning(理由)", f"{Fore.WHITE}{wrapped_reasoning}{Style.RESET_ALL}"],
         ]
         
         print(f"\n{Fore.WHITE}{Style.BRIGHT}TRADING DECISION:{Style.RESET_ALL} [{Fore.CYAN}{ticker}{Style.RESET_ALL}]")
@@ -156,11 +160,14 @@ def print_trading_output(result: dict) -> None:
     portfolio_data = []
     
     # Extract portfolio manager reasoning (common for all tickers)
-    portfolio_manager_reasoning = None
+    portfolio_manager_reasoning = ""
     for ticker, decision in decisions.items():
-        if decision.get("reasoning"):
-            portfolio_manager_reasoning = decision.get("reasoning")
-            break
+        reasoning = decision.get("reasoning")
+        if reasoning:
+            if isinstance(reasoning, dict):
+                portfolio_manager_reasoning += json.dumps(reasoning, indent=2) + "\n"
+            else:
+                portfolio_manager_reasoning += str(reasoning) + "\n"
             
     for ticker, decision in decisions.items():
         action = decision.get("action", "").upper()
@@ -171,6 +178,7 @@ def print_trading_output(result: dict) -> None:
             "COVER": Fore.GREEN,
             "SHORT": Fore.RED,
         }.get(action, Fore.WHITE)
+        action = action.replace("BUY", "买入").replace("SELL", "卖出").replace("HOLD", "持有").replace("COVER", "平仓").replace("SHORT", "做空")
         portfolio_data.append(
             [
                 f"{Fore.CYAN}{ticker}{Style.RESET_ALL}",
@@ -180,7 +188,7 @@ def print_trading_output(result: dict) -> None:
             ]
         )
 
-    headers = [f"{Fore.WHITE}Ticker", "Action", "Quantity", "Confidence"]
+    headers = [f"{Fore.WHITE}Ticker(股票代码)", "Action(操作)", "Quantity(数量)", "Confidence(置信度)"]
     
     # Print the portfolio summary table
     print(

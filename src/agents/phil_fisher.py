@@ -549,7 +549,7 @@ def generate_fisher_output(
               You must output a JSON object with:
                 - "signal": "bullish" or "bearish" or "neutral"
                 - "confidence": a float between 0 and 100
-                - "reasoning": a concise explanation
+                - "reasoning": a concise explanation (pls use Chinese for reasoning)
               """,
             ),
             (

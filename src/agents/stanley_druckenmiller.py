@@ -544,7 +544,7 @@ def generate_druckenmiller_output(
             - Reward companies showing strong revenue/earnings growth and positive stock momentum.
             - Evaluate sentiment and insider activity as supportive or contradictory signals.
             - Watch out for high leverage or extreme volatility that threatens capital.
-            - Output a JSON object with signal, confidence, and a reasoning string.
+            - Output a JSON object with signal, confidence, and a reasoning string (pls use Chinese for reasoning).
             """,
             ),
             (

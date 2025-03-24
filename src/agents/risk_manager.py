@@ -56,11 +56,11 @@ def risk_management_agent(state: AgentState):
             "remaining_position_limit": float(max_position_size),
             "current_price": float(current_price),
             "reasoning": {
-                "portfolio_value": float(total_portfolio_value),
-                "current_position": float(current_position_value),
-                "position_limit": float(position_limit),
-                "remaining_limit": float(remaining_position_limit),
-                "available_cash": float(portfolio.get("cash", 0)),
+                "portfolio_value (总资本)": float(total_portfolio_value),
+                "current_position (当前持仓)": float(current_position_value),
+                "position_limit (持仓限制)": float(position_limit),
+                "remaining_limit (剩余限制)": float(remaining_position_limit),
+                "available_cash (可用现金)": float(portfolio.get("cash", 0)),
             },
         }
 

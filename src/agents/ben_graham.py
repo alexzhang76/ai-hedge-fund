@@ -298,7 +298,7 @@ def generate_graham_output(
             4. Consider dividend record for extra safety.
             5. Avoid speculative or high-growth assumptions; focus on proven metrics.
                         
-            Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning.
+            Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning).
             """
         ),
         (

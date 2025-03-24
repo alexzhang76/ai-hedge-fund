@@ -692,7 +692,7 @@ def generate_munger_output(
             - Focus on long-term economics rather than short-term metrics.
             - Be skeptical of businesses with rapidly changing dynamics or excessive share dilution.
             - Avoid excessive leverage or financial engineering.
-            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral)."""
+            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning)."""
         ),
         (
             "human",

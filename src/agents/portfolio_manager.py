@@ -136,6 +136,8 @@ def generate_trading_decision(
               - portfolio_positions: current positions (both long and short)
               - current_prices: current prices for each ticker
               - margin_requirement: current margin requirement for short positions
+
+              Return a rational decision for specific ticker: buy, sell, short, cover, or hold, with quantity, a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning).
               """,
             ),
             (

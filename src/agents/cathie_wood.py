@@ -443,7 +443,7 @@ def generate_cathie_wood_output(
             "- Evaluate strong potential for multi-year revenue growth.\n"
             "- Check if the company can scale effectively in a large market.\n"
             "- Use a growth-biased valuation approach.\n"
-            "- Provide a data-driven recommendation (bullish, bearish, or neutral)."""
+            "- Provide a data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning)."""
         ),
         (
             "human",

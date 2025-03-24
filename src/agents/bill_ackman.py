@@ -362,7 +362,7 @@ def generate_ackman_output(
             - Analyze balance sheet health (reasonable debt, good ROE).
             - Buy at a discount to intrinsic value; higher discount => stronger conviction.
             - Engage if management is suboptimal or if there's a path for strategic improvements.
-            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral)."""
+            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning)."""
         ),
         (
             "human",

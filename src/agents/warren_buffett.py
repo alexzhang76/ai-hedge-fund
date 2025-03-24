@@ -403,6 +403,8 @@ def generate_buffett_output(
                 - Sell only if fundamentals deteriorate or valuation far exceeds intrinsic value
 
                 Follow these guidelines strictly.
+
+                Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning).
                 """,
             ),
             (

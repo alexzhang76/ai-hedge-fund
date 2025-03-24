@@ -15,57 +15,57 @@ from agents.warren_buffett import warren_buffett_agent
 # Define analyst configuration - single source of truth
 ANALYST_CONFIG = {
     "ben_graham": {
-        "display_name": "Ben Graham",
+        "display_name": "价值投资：Ben Graham",
         "agent_func": ben_graham_agent,
         "order": 0,
     },
     "bill_ackman": {
-        "display_name": "Bill Ackman",
+        "display_name": "激进投资：Bill Ackman",
         "agent_func": bill_ackman_agent,
         "order": 1,
     },
     "cathie_wood": {
-        "display_name": "Cathie Wood",
+        "display_name": "成长投资：Cathie Wood",
         "agent_func": cathie_wood_agent,
         "order": 2,
     },
     "charlie_munger": {
-        "display_name": "Charlie Munger",
+        "display_name": "价值投资：Charlie Munger",
         "agent_func": charlie_munger_agent,
         "order": 3,
     },
     "phil_fisher": {
-        "display_name": "Phil Fisher",
+        "display_name": "成长投资：Phil Fisher",
         "agent_func": phil_fisher_agent,
         "order": 4,
     },
     "stanley_druckenmiller": {
-        "display_name": "Stanley Druckenmiller",
+        "display_name": "宏观投资：Stanley Druckenmiller",
         "agent_func": stanley_druckenmiller_agent,
         "order": 5,
     },
     "warren_buffett": {
-        "display_name": "Warren Buffett",
+        "display_name": "价值投资：Warren Buffett",
         "agent_func": warren_buffett_agent,
         "order": 6,
     },
     "technical_analyst": {
-        "display_name": "Technical Analyst",
+        "display_name": "技术分析：Technical Analyst",
         "agent_func": technical_analyst_agent,
         "order": 7,
     },
     "fundamentals_analyst": {
-        "display_name": "Fundamentals Analyst",
+        "display_name": "基本面分析：Fundamentals Analyst",
         "agent_func": fundamentals_agent,
         "order": 8,
     },
     "sentiment_analyst": {
-        "display_name": "Sentiment Analyst",
+        "display_name": "情绪分析：Sentiment Analyst",
         "agent_func": sentiment_agent,
         "order": 9,
     },
     "valuation_analyst": {
-        "display_name": "Valuation Analyst",
+        "display_name": "估值分析：Valuation Analyst",
         "agent_func": valuation_agent,
         "order": 10,
     },
