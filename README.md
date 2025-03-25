@@ -107,6 +107,12 @@ You can also specify a `--show-reasoning` flag to print the reasoning of each ag
 ```bash
 poetry run python src/main.py --ticker AAPL,MSFT,NVDA --show-reasoning
 ```
+You can also specify a `--language=zh` flag to enable Chinese output.
+
+```bash
+poetry run python src/main.py --ticker AAPL,MSFT,NVDA --show-reasoning --language=zh
+```
+
 You can optionally specify the start and end dates to make decisions for a specific time period.
 
 ```bash
