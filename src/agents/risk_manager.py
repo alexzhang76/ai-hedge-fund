@@ -67,7 +67,7 @@ def risk_management_agent(state: AgentState):
         progress.update_status("risk_management_agent", ticker, "Done")
 
     message = HumanMessage(
-        content=json.dumps(risk_analysis),
+        content=json.dumps(risk_analysis, ensure_ascii=False),
         name="risk_management_agent",
     )
 

@@ -102,13 +102,13 @@ def valuation_agent(state: AgentState):
         # Create the reasoning
         reasoning = {}
         reasoning["dcf_analysis"] = {
-            "signal": ("bullish" if dcf_gap > 0.15 else "bearish" if dcf_gap < -0.15 else "neutral"),
-            "details": f"Intrinsic Value: ${dcf_value:,.2f}, Market Cap: ${market_cap:,.2f}, Gap: {dcf_gap:.1%}",
+            "signal": ("bullish(看涨)" if dcf_gap > 0.15 else "bearish(看跌)" if dcf_gap < -0.15 else "neutral(中性)"),
+            "details": f"Intrinsic Value(内在价值): ${dcf_value:,.2f}, Market Cap(市值): ${market_cap:,.2f}, Gap(估值差距): {dcf_gap:.1%}",
         }
 
         reasoning["owner_earnings_analysis"] = {
-            "signal": ("bullish" if owner_earnings_gap > 0.15 else "bearish" if owner_earnings_gap < -0.15 else "neutral"),
-            "details": f"Owner Earnings Value: ${owner_earnings_value:,.2f}, Market Cap: ${market_cap:,.2f}, Gap: {owner_earnings_gap:.1%}",
+            "signal": ("bullish(看涨)" if owner_earnings_gap > 0.15 else "bearish(看跌)" if owner_earnings_gap < -0.15 else "neutral(中性)"),
+            "details": f"Owner Earnings Value(所有者收益价值): ${owner_earnings_value:,.2f}, Market Cap(市值): ${market_cap:,.2f}, Gap(估值差距): {owner_earnings_gap:.1%}",
         }
 
         confidence = round(abs(valuation_gap), 2) * 100
@@ -121,7 +121,7 @@ def valuation_agent(state: AgentState):
         progress.update_status("valuation_agent", ticker, "Done")
 
     message = HumanMessage(
-        content=json.dumps(valuation_analysis),
+        content=json.dumps(valuation_analysis, ensure_ascii=False),
         name="valuation_agent",
     )
 

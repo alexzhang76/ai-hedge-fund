@@ -64,7 +64,7 @@ def print_trading_output(result: dict) -> None:
                     reasoning_str = reasoning
                 elif isinstance(reasoning, dict):
                     # Convert dict to string representation
-                    reasoning_str = json.dumps(reasoning, indent=2)
+                    reasoning_str = json.dumps(reasoning, indent=2, ensure_ascii=False)
                 else:
                     # Convert any other type to string
                     reasoning_str = str(reasoning)
@@ -165,7 +165,7 @@ def print_trading_output(result: dict) -> None:
         reasoning = decision.get("reasoning")
         if reasoning:
             if isinstance(reasoning, dict):
-                portfolio_manager_reasoning += json.dumps(reasoning, indent=2) + "\n"
+                portfolio_manager_reasoning += json.dumps(reasoning, indent=2, ensure_ascii=False) + "\n"
             else:
                 portfolio_manager_reasoning += str(reasoning) + "\n"
             
@@ -208,7 +208,7 @@ def print_trading_output(result: dict) -> None:
             reasoning_str = portfolio_manager_reasoning
         elif isinstance(portfolio_manager_reasoning, dict):
             # Convert dict to string representation
-            reasoning_str = json.dumps(portfolio_manager_reasoning, indent=2)
+            reasoning_str = json.dumps(portfolio_manager_reasoning, indent=2, ensure_ascii=False)
         else:
             # Convert any other type to string
             reasoning_str = str(portfolio_manager_reasoning)

@@ -71,7 +71,7 @@ def sentiment_agent(state: AgentState):
         confidence = 0  # Default confidence when there are no signals
         if total_weighted_signals > 0:
             confidence = round(max(bullish_signals, bearish_signals) / total_weighted_signals, 2) * 100
-        reasoning = f"Weighted Bullish signals: {bullish_signals:.1f}, Weighted Bearish signals: {bearish_signals:.1f}"
+        reasoning = f"Weighted Bullish signals(看涨信号权重): {bullish_signals:.1f}, Weighted Bearish signals(看跌信号权重): {bearish_signals:.1f}"
 
         sentiment_analysis[ticker] = {
             "signal": overall_signal,
@@ -83,7 +83,7 @@ def sentiment_agent(state: AgentState):
 
     # Create the sentiment message
     message = HumanMessage(
-        content=json.dumps(sentiment_analysis),
+        content=json.dumps(sentiment_analysis, ensure_ascii=False),
         name="sentiment_agent",
     )
 

@@ -54,7 +54,7 @@ def fundamentals_agent(state: AgentState):
         signals.append("bullish" if profitability_score >= 2 else "bearish" if profitability_score == 0 else "neutral")
         reasoning["profitability_signal"] = {
             "signal": signals[0],
-            "details": (f"ROE: {return_on_equity:.2%}" if return_on_equity else "ROE: N/A") + ", " + (f"Net Margin: {net_margin:.2%}" if net_margin else "Net Margin: N/A") + ", " + (f"Op Margin: {operating_margin:.2%}" if operating_margin else "Op Margin: N/A"),
+            "details": (f"ROE(净资产收益率): {return_on_equity:.2%}" if return_on_equity else "ROE(净资产收益率): N/A") + ", " + (f"Net Margin(净利率): {net_margin:.2%}" if net_margin else "Net Margin(净利率): N/A") + ", " + (f"Op Margin(营业利润率): {operating_margin:.2%}" if operating_margin else "Op Margin(营业利润率): N/A"),
         }
 
         progress.update_status("fundamentals_agent", ticker, "Analyzing growth")
@@ -73,7 +73,7 @@ def fundamentals_agent(state: AgentState):
         signals.append("bullish" if growth_score >= 2 else "bearish" if growth_score == 0 else "neutral")
         reasoning["growth_signal"] = {
             "signal": signals[1],
-            "details": (f"Revenue Growth: {revenue_growth:.2%}" if revenue_growth else "Revenue Growth: N/A") + ", " + (f"Earnings Growth: {earnings_growth:.2%}" if earnings_growth else "Earnings Growth: N/A"),
+            "details": (f"Revenue Growth(营收增长率): {revenue_growth:.2%}" if revenue_growth else "Revenue Growth(营收增长率): N/A") + ", " + (f"Earnings Growth(盈利增长率): {earnings_growth:.2%}" if earnings_growth else "Earnings Growth(盈利增长率): N/A"),
         }
 
         progress.update_status("fundamentals_agent", ticker, "Analyzing financial health")
@@ -94,7 +94,7 @@ def fundamentals_agent(state: AgentState):
         signals.append("bullish" if health_score >= 2 else "bearish" if health_score == 0 else "neutral")
         reasoning["financial_health_signal"] = {
             "signal": signals[2],
-            "details": (f"Current Ratio: {current_ratio:.2f}" if current_ratio else "Current Ratio: N/A") + ", " + (f"D/E: {debt_to_equity:.2f}" if debt_to_equity else "D/E: N/A"),
+            "details": (f"Current Ratio(流动比率): {current_ratio:.2f}" if current_ratio else "Current Ratio(流动比率): N/A") + ", " + (f"D/E(负债权益比): {debt_to_equity:.2f}" if debt_to_equity else "D/E(负债权益比): N/A"),
         }
 
         progress.update_status("fundamentals_agent", ticker, "Analyzing valuation ratios")
@@ -113,7 +113,7 @@ def fundamentals_agent(state: AgentState):
         signals.append("bearish" if price_ratio_score >= 2 else "bullish" if price_ratio_score == 0 else "neutral")
         reasoning["price_ratios_signal"] = {
             "signal": signals[3],
-            "details": (f"P/E: {pe_ratio:.2f}" if pe_ratio else "P/E: N/A") + ", " + (f"P/B: {pb_ratio:.2f}" if pb_ratio else "P/B: N/A") + ", " + (f"P/S: {ps_ratio:.2f}" if ps_ratio else "P/S: N/A"),
+            "details": (f"P/E(市盈率): {pe_ratio:.2f}" if pe_ratio else "P/E(市盈率): N/A") + ", " + (f"P/B(市净率): {pb_ratio:.2f}" if pb_ratio else "P/B(市净率): N/A") + ", " + (f"P/S(市销率): {ps_ratio:.2f}" if ps_ratio else "P/S(市销率): N/A"),
         }
 
         progress.update_status("fundamentals_agent", ticker, "Calculating final signal")
@@ -142,7 +142,7 @@ def fundamentals_agent(state: AgentState):
 
     # Create the fundamental analysis message
     message = HumanMessage(
-        content=json.dumps(fundamental_analysis),
+        content=json.dumps(fundamental_analysis, ensure_ascii=False),
         name="fundamentals_agent",
     )
 

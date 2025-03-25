@@ -20,12 +20,12 @@ ANALYST_CONFIG = {
         "order": 0,
     },
     "bill_ackman": {
-        "display_name": "激进投资：Bill Ackman",
+        "display_name": "积极主动价值型：Bill Ackman",
         "agent_func": bill_ackman_agent,
         "order": 1,
     },
     "cathie_wood": {
-        "display_name": "成长投资：Cathie Wood",
+        "display_name": "创新风险型：Cathie Wood",
         "agent_func": cathie_wood_agent,
         "order": 2,
     },
@@ -35,12 +35,12 @@ ANALYST_CONFIG = {
         "order": 3,
     },
     "phil_fisher": {
-        "display_name": "成长投资：Phil Fisher",
+        "display_name": "长期稳定成长型：Phil Fisher",
         "agent_func": phil_fisher_agent,
         "order": 4,
     },
     "stanley_druckenmiller": {
-        "display_name": "宏观投资：Stanley Druckenmiller",
+        "display_name": "灵活进取宏观型：Stanley Druckenmiller",
         "agent_func": stanley_druckenmiller_agent,
         "order": 5,
     },

@@ -88,27 +88,27 @@ def technical_analyst_agent(state: AgentState):
             "signal": combined_signal["signal"],
             "confidence": round(combined_signal["confidence"] * 100),
             "strategy_signals": {
-                "trend_following": {
+                "trend_following(趋势跟踪)": {
                     "signal": trend_signals["signal"],
                     "confidence": round(trend_signals["confidence"] * 100),
                     "metrics": normalize_pandas(trend_signals["metrics"]),
                 },
-                "mean_reversion": {
+                "mean_reversion(均值回归)": {
                     "signal": mean_reversion_signals["signal"],
                     "confidence": round(mean_reversion_signals["confidence"] * 100),
                     "metrics": normalize_pandas(mean_reversion_signals["metrics"]),
                 },
-                "momentum": {
+                "momentum(动量)": {
                     "signal": momentum_signals["signal"],
                     "confidence": round(momentum_signals["confidence"] * 100),
                     "metrics": normalize_pandas(momentum_signals["metrics"]),
                 },
-                "volatility": {
+                "volatility(波动性)": {
                     "signal": volatility_signals["signal"],
                     "confidence": round(volatility_signals["confidence"] * 100),
                     "metrics": normalize_pandas(volatility_signals["metrics"]),
                 },
-                "statistical_arbitrage": {
+                "statistical_arbitrage(统计套利)": {
                     "signal": stat_arb_signals["signal"],
                     "confidence": round(stat_arb_signals["confidence"] * 100),
                     "metrics": normalize_pandas(stat_arb_signals["metrics"]),
@@ -119,7 +119,7 @@ def technical_analyst_agent(state: AgentState):
 
     # Create the technical analyst message
     message = HumanMessage(
-        content=json.dumps(technical_analysis),
+        content=json.dumps(technical_analysis, ensure_ascii=False),
         name="technical_analyst_agent",
     )
 
