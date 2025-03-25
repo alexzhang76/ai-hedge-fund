@@ -10,7 +10,8 @@ import numpy as np
 
 from tools.api import get_prices, prices_to_df
 from utils.progress import progress
-
+from config import config, Language
+from utils.i18n import get_string
 
 ##### Technical Analyst #####
 def technical_analyst_agent(state: AgentState):
@@ -88,27 +89,27 @@ def technical_analyst_agent(state: AgentState):
             "signal": combined_signal["signal"],
             "confidence": round(combined_signal["confidence"] * 100),
             "strategy_signals": {
-                "trend_following(趋势跟踪)": {
+                f"{get_string('trend_following', config.language)}": {
                     "signal": trend_signals["signal"],
                     "confidence": round(trend_signals["confidence"] * 100),
                     "metrics": normalize_pandas(trend_signals["metrics"]),
                 },
-                "mean_reversion(均值回归)": {
+                f"{get_string('mean_reversion', config.language)}": {
                     "signal": mean_reversion_signals["signal"],
                     "confidence": round(mean_reversion_signals["confidence"] * 100),
                     "metrics": normalize_pandas(mean_reversion_signals["metrics"]),
                 },
-                "momentum(动量)": {
+                f"{get_string('momentum', config.language)}": {
                     "signal": momentum_signals["signal"],
                     "confidence": round(momentum_signals["confidence"] * 100),
                     "metrics": normalize_pandas(momentum_signals["metrics"]),
                 },
-                "volatility(波动性)": {
+                f"{get_string('volatility', config.language)}": {
                     "signal": volatility_signals["signal"],
                     "confidence": round(volatility_signals["confidence"] * 100),
                     "metrics": normalize_pandas(volatility_signals["metrics"]),
                 },
-                "statistical_arbitrage(统计套利)": {
+                f"{get_string('statistical_arbitrage', config.language)}": {
                     "signal": stat_arb_signals["signal"],
                     "confidence": round(stat_arb_signals["confidence"] * 100),
                     "metrics": normalize_pandas(stat_arb_signals["metrics"]),

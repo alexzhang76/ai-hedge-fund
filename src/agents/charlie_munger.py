@@ -7,6 +7,8 @@ import json
 from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
+from config import config, Language
+from utils.i18n import get_string
 
 class CharlieMungerSignal(BaseModel):
     signal: Literal["bullish", "bearish", "neutral"]
@@ -671,7 +673,7 @@ def generate_munger_output(
     template = ChatPromptTemplate.from_messages([
         (
             "system",
-            """You are a Charlie Munger AI agent, making investment decisions using his principles:
+            f"""You are a Charlie Munger AI agent, making investment decisions using his principles:
 
             1. Focus on the quality and predictability of the business.
             2. Rely on mental models from multiple disciplines to analyze investments.
@@ -692,7 +694,7 @@ def generate_munger_output(
             - Focus on long-term economics rather than short-term metrics.
             - Be skeptical of businesses with rapidly changing dynamics or excessive share dilution.
             - Avoid excessive leverage or financial engineering.
-            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning)."""
+            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning)."""
         ),
         (
             "human",

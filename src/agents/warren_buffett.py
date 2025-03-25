@@ -7,6 +7,8 @@ from typing_extensions import Literal
 from tools.api import get_financial_metrics, get_market_cap, search_line_items
 from utils.llm import call_llm
 from utils.progress import progress
+from config import config, Language
+from utils.i18n import get_string
 
 
 class WarrenBuffettSignal(BaseModel):
@@ -79,7 +81,7 @@ def warren_buffett_agent(state: AgentState):
             margin_of_safety = (intrinsic_value - market_cap) / market_cap
 
         # Generate trading signal using a stricter margin-of-safety requirement
-        # if fundamentals+moat+management are strong but margin_of_safety < 0.3, it’s neutral
+        # if fundamentals+moat+management are strong but margin_of_safety < 0.3, it's neutral
         # if fundamentals are very weak or margin_of_safety is severely negative -> bearish
         # else bullish
         if (total_score >= 0.7 * max_possible_score) and margin_of_safety and (margin_of_safety >= 0.3):
@@ -393,7 +395,7 @@ def generate_buffett_output(
         [
             (
                 "system",
-                """You are a Warren Buffett AI agent. Decide on investment signals based on Warren Buffett’s principles:
+                f"""You are a Warren Buffett AI agent. Decide on investment signals based on Warren Buffett's principles:
                 - Circle of Competence: Only invest in businesses you understand
                 - Margin of Safety (> 30%): Buy at a significant discount to intrinsic value
                 - Economic Moat: Look for durable competitive advantages
@@ -404,7 +406,7 @@ def generate_buffett_output(
 
                 Follow these guidelines strictly.
 
-                Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning).
+                Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning).
                 """,
             ),
             (

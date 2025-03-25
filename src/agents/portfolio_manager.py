@@ -7,6 +7,8 @@ from pydantic import BaseModel, Field
 from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
+from config import config, Language
+from utils.i18n import get_string
 
 
 class PortfolioDecision(BaseModel):
@@ -103,7 +105,7 @@ def generate_trading_decision(
         [
             (
               "system",
-              """You are a portfolio manager making final trading decisions based on multiple tickers.
+              f"""You are a portfolio manager making final trading decisions based on multiple tickers.
 
               Trading Rules:
               - For long positions:
@@ -137,7 +139,7 @@ def generate_trading_decision(
               - current_prices: current prices for each ticker
               - margin_requirement: current margin requirement for short positions
 
-              Return a rational decision for specific ticker: buy, sell, short, cover, or hold, with quantity, a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning).
+              Return a rational decision for specific ticker: buy, sell, short, cover, or hold, with quantity, a confidence level (0-100) and concise reasoning ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning).
               """,
             ),
             (

@@ -8,6 +8,8 @@ import json
 from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
+from config import config, Language
+from utils.i18n import get_string
 
 class CathieWoodSignal(BaseModel):
     signal: Literal["bullish", "bearish", "neutral"]
@@ -431,7 +433,7 @@ def generate_cathie_wood_output(
     template = ChatPromptTemplate.from_messages([
         (
             "system",
-            """You are a Cathie Wood AI agent, making investment decisions using her principles:\n\n"
+            f"""You are a Cathie Wood AI agent, making investment decisions using her principles:\n\n"
             "1. Seek companies leveraging disruptive innovation.\n"
             "2. Emphasize exponential growth potential, large TAM.\n"
             "3. Focus on technology, healthcare, or other future-facing sectors.\n"
@@ -443,7 +445,7 @@ def generate_cathie_wood_output(
             "- Evaluate strong potential for multi-year revenue growth.\n"
             "- Check if the company can scale effectively in a large market.\n"
             "- Use a growth-biased valuation approach.\n"
-            "- Provide a data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning)."""
+            "- Provide a data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning)."""
         ),
         (
             "human",

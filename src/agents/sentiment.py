@@ -4,7 +4,8 @@ from utils.progress import progress
 import pandas as pd
 import numpy as np
 import json
-
+from config import config, Language
+from utils.i18n import get_string
 from tools.api import get_insider_trades, get_company_news
 
 
@@ -71,7 +72,7 @@ def sentiment_agent(state: AgentState):
         confidence = 0  # Default confidence when there are no signals
         if total_weighted_signals > 0:
             confidence = round(max(bullish_signals, bearish_signals) / total_weighted_signals, 2) * 100
-        reasoning = f"Weighted Bullish signals(看涨信号权重): {bullish_signals:.1f}, Weighted Bearish signals(看跌信号权重): {bearish_signals:.1f}"
+        reasoning = f"{get_string('weighted_bullish_signals', config.language)}: {bullish_signals:.1f}, {get_string('weighted_bearish_signals', config.language)}: {bearish_signals:.1f}"
 
         sentiment_analysis[ticker] = {
             "signal": overall_signal,

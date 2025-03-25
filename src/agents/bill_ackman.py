@@ -8,6 +8,8 @@ import json
 from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
+from config import config, Language
+from utils.i18n import get_string
 
 class BillAckmanSignal(BaseModel):
     signal: Literal["bullish", "bearish", "neutral"]
@@ -347,7 +349,7 @@ def generate_ackman_output(
     template = ChatPromptTemplate.from_messages([
         (
             "system",
-            """You are a Bill Ackman AI agent, making investment decisions using his principles:
+            f"""You are a Bill Ackman AI agent, making investment decisions using his principles:
 
             1. Seek high-quality businesses with durable competitive advantages (moats).
             2. Prioritize consistent free cash flow and growth potential.
@@ -362,7 +364,7 @@ def generate_ackman_output(
             - Analyze balance sheet health (reasonable debt, good ROE).
             - Buy at a discount to intrinsic value; higher discount => stronger conviction.
             - Engage if management is suboptimal or if there's a path for strategic improvements.
-            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning)."""
+            - Provide a rational, data-driven recommendation (bullish, bearish, or neutral), with a confidence level (0-100) and concise reasoning ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning)."""
         ),
         (
             "human",

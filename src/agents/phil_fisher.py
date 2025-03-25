@@ -14,7 +14,8 @@ from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
 import statistics
-
+from config import config, Language
+from utils.i18n import get_string
 
 class PhilFisherSignal(BaseModel):
     signal: Literal["bullish", "bearish", "neutral"]
@@ -538,7 +539,7 @@ def generate_fisher_output(
         [
             (
               "system",
-              """You are a Phil Fisher AI agent, making investment decisions using his principles:
+              f"""You are a Phil Fisher AI agent, making investment decisions using his principles:
   
               1. Emphasize long-term growth potential and quality of management.
               2. Focus on companies investing in R&D for future products/services.
@@ -549,7 +550,7 @@ def generate_fisher_output(
               You must output a JSON object with:
                 - "signal": "bullish" or "bearish" or "neutral"
                 - "confidence": a float between 0 and 100
-                - "reasoning": a concise explanation (pls use Chinese for reasoning)
+                - "reasoning": a concise explanation ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning)
               """,
             ),
             (

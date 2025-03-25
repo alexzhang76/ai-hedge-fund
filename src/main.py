@@ -1,4 +1,5 @@
 import sys
+from dataclasses import dataclass
 
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage
@@ -19,6 +20,7 @@ from utils.display import print_trading_output
 from utils.analysts import ANALYST_ORDER, get_analyst_nodes
 from utils.progress import progress
 from llm.models import LLM_ORDER, get_model_info
+from config import config, Language
 
 import argparse
 from datetime import datetime
@@ -31,7 +33,6 @@ import json
 load_dotenv()
 
 init(autoreset=True)
-
 
 def parse_hedge_fund_response(response):
     """Parses a JSON string and returns a dictionary."""
@@ -165,8 +166,13 @@ if __name__ == "__main__":
     parser.add_argument(
         "--show-agent-graph", action="store_true", help="Show the agent graph"
     )
+    parser.add_argument('--language', 
+                       choices=['en', 'zh'],
+                       default='en',
+                       help='Output language (en: English, zh: Chinese)')
 
     args = parser.parse_args()
+    config.language = Language(args.language)
 
     # Parse tickers from comma-separated string
     tickers = [ticker.strip() for ticker in args.tickers.split(",")]

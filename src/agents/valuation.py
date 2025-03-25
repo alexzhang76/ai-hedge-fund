@@ -2,7 +2,8 @@ from langchain_core.messages import HumanMessage
 from graph.state import AgentState, show_agent_reasoning
 from utils.progress import progress
 import json
-
+from config import config, Language
+from utils.i18n import get_string
 from tools.api import get_financial_metrics, get_market_cap, search_line_items
 
 
@@ -102,13 +103,13 @@ def valuation_agent(state: AgentState):
         # Create the reasoning
         reasoning = {}
         reasoning["dcf_analysis"] = {
-            "signal": ("bullish(看涨)" if dcf_gap > 0.15 else "bearish(看跌)" if dcf_gap < -0.15 else "neutral(中性)"),
-            "details": f"Intrinsic Value(内在价值): ${dcf_value:,.2f}, Market Cap(市值): ${market_cap:,.2f}, Gap(估值差距): {dcf_gap:.1%}",
+            "signal": get_string("bullish_with_gap", config.language) if dcf_gap > 0.15 else get_string("bearish_with_gap", config.language) if dcf_gap < -0.15 else get_string("neutral_with_gap", config.language),
+            "details": f"{get_string('intrinsic_value', config.language)}: ${dcf_value:,.2f}, {get_string('market_cap', config.language)}: ${market_cap:,.2f}, {get_string('valuation_gap', config.language)}: {dcf_gap:.1%}",
         }
 
         reasoning["owner_earnings_analysis"] = {
-            "signal": ("bullish(看涨)" if owner_earnings_gap > 0.15 else "bearish(看跌)" if owner_earnings_gap < -0.15 else "neutral(中性)"),
-            "details": f"Owner Earnings Value(所有者收益价值): ${owner_earnings_value:,.2f}, Market Cap(市值): ${market_cap:,.2f}, Gap(估值差距): {owner_earnings_gap:.1%}",
+            "signal": get_string("bullish_with_gap", config.language) if owner_earnings_gap > 0.15 else get_string("bearish_with_gap", config.language) if owner_earnings_gap < -0.15 else get_string("neutral_with_gap", config.language),
+            "details": f"{get_string('owner_earnings_value', config.language)}: ${owner_earnings_value:,.2f}, {get_string('market_cap', config.language)}: ${market_cap:,.2f}, {get_string('valuation_gap', config.language)}: {owner_earnings_gap:.1%}",
         }
 
         confidence = round(abs(valuation_gap), 2) * 100

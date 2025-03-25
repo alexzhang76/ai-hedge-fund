@@ -15,7 +15,8 @@ from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
 import statistics
-
+from config import config, Language
+from utils.i18n import get_string
 
 class StanleyDruckenmillerSignal(BaseModel):
     signal: Literal["bullish", "bearish", "neutral"]
@@ -531,7 +532,7 @@ def generate_druckenmiller_output(
         [
             (
                 "system",
-                """You are a Stanley Druckenmiller AI agent, making investment decisions using his principles:
+                f"""You are a Stanley Druckenmiller AI agent, making investment decisions using his principles:
             
             1. Seek asymmetric risk-reward opportunities (large upside, limited downside).
             2. Emphasize growth, momentum, and market sentiment.
@@ -544,7 +545,7 @@ def generate_druckenmiller_output(
             - Reward companies showing strong revenue/earnings growth and positive stock momentum.
             - Evaluate sentiment and insider activity as supportive or contradictory signals.
             - Watch out for high leverage or extreme volatility that threatens capital.
-            - Output a JSON object with signal, confidence, and a reasoning string (pls use Chinese for reasoning).
+            - Output a JSON object with signal, confidence, and a reasoning string ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning).
             """,
             ),
             (

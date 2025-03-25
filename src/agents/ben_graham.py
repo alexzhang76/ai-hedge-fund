@@ -9,6 +9,8 @@ from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
 import math
+from config import config, Language
+from utils.i18n import get_string
 
 
 class BenGrahamSignal(BaseModel):
@@ -291,14 +293,14 @@ def generate_graham_output(
     template = ChatPromptTemplate.from_messages([
         (
             "system",
-            """You are a Benjamin Graham AI agent, making investment decisions using his principles:
+            f"""You are a Benjamin Graham AI agent, making investment decisions using his principles:
             1. Insist on a margin of safety by buying below intrinsic value (e.g., using Graham Number, net-net).
             2. Emphasize the company's financial strength (low leverage, ample current assets).
             3. Prefer stable earnings over multiple years.
             4. Consider dividend record for extra safety.
             5. Avoid speculative or high-growth assumptions; focus on proven metrics.
                         
-            Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning (pls use Chinese for reasoning).
+            Return a rational recommendation: bullish, bearish, or neutral, with a confidence level (0-100) and concise reasoning ({"使用中文" if config.language == Language.CHINESE else "use English"} for reasoning).
             """
         ),
         (

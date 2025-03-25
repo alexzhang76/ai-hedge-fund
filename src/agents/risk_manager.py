@@ -3,7 +3,8 @@ from graph.state import AgentState, show_agent_reasoning
 from utils.progress import progress
 from tools.api import get_prices, prices_to_df
 import json
-
+from config import config, Language
+from utils.i18n import get_string
 
 ##### Risk Management Agent #####
 def risk_management_agent(state: AgentState):
@@ -56,11 +57,11 @@ def risk_management_agent(state: AgentState):
             "remaining_position_limit": float(max_position_size),
             "current_price": float(current_price),
             "reasoning": {
-                "portfolio_value (总资本)": float(total_portfolio_value),
-                "current_position (当前持仓)": float(current_position_value),
-                "position_limit (持仓限制)": float(position_limit),
-                "remaining_limit (剩余限制)": float(remaining_position_limit),
-                "available_cash (可用现金)": float(portfolio.get("cash", 0)),
+                f"{get_string('portfolio_value', config.language)}": float(total_portfolio_value),
+                f"{get_string('current_position', config.language)}": float(current_position_value),
+                f"{get_string('position_limit', config.language)}": float(position_limit),
+                f"{get_string('remaining_limit', config.language)}": float(remaining_position_limit),
+                f"{get_string('available_cash', config.language)}": float(portfolio.get("cash", 0)),
             },
         }
 
