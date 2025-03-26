@@ -8,7 +8,7 @@ import json
 from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
-from config import config, Language
+from utils.config import config, Language
 from utils.i18n import get_string
 
 class BillAckmanSignal(BaseModel):
@@ -213,7 +213,7 @@ def analyze_financial_discipline(metrics: list, financial_line_items: list) -> d
         }
     
     # 1. Multi-period debt ratio or debt_to_equity
-    # Check if the company’s leverage is stable or improving
+    # Check if the company's leverage is stable or improving
     debt_to_equity_vals = [item.debt_to_equity for item in financial_line_items if item.debt_to_equity is not None]
     
     # If we have multi-year data, see if D/E ratio has gone down or stayed <1 across most periods

@@ -4,7 +4,7 @@ from utils.progress import progress
 import pandas as pd
 import numpy as np
 import json
-from config import config, Language
+from utils.config import config, Language
 from utils.i18n import get_string
 from tools.api import get_insider_trades, get_company_news
 

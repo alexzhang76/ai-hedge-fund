@@ -3,7 +3,7 @@ from graph.state import AgentState, show_agent_reasoning
 from utils.progress import progress
 from tools.api import get_prices, prices_to_df
 import json
-from config import config, Language
+from utils.config import config, Language
 from utils.i18n import get_string
 
 ##### Risk Management Agent #####

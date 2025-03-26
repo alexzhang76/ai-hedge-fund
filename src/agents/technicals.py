@@ -10,7 +10,7 @@ import numpy as np
 
 from tools.api import get_prices, prices_to_df
 from utils.progress import progress
-from config import config, Language
+from utils.config import config, Language
 from utils.i18n import get_string
 
 ##### Technical Analyst #####

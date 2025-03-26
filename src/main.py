@@ -20,7 +20,7 @@ from utils.display import print_trading_output
 from utils.analysts import ANALYST_ORDER, get_analyst_nodes
 from utils.progress import progress
 from llm.models import LLM_ORDER, get_model_info
-from config import config, Language
+from utils.config import config, Language
 
 import argparse
 from datetime import datetime

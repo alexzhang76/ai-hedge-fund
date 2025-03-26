@@ -9,7 +9,7 @@ from typing_extensions import Literal
 from utils.progress import progress
 from utils.llm import call_llm
 import math
-from config import config, Language
+from utils.config import config, Language
 from utils.i18n import get_string
 
 

@@ -2,7 +2,7 @@ from colorama import Fore, Style
 from tabulate import tabulate
 from .analysts import ANALYST_ORDER
 from .i18n import get_string
-from config import config
+from utils.config import config
 import os
 import json
 

@@ -1,5 +1,5 @@
 from typing import Dict
-from config import Language
+from utils.config import Language
 
 # English strings
 EN_STRINGS = {

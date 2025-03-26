@@ -2,7 +2,7 @@ from langchain_core.messages import HumanMessage
 from graph.state import AgentState, show_agent_reasoning
 from utils.progress import progress
 import json
-from config import config, Language
+from utils.config import config, Language
 from utils.i18n import get_string
 from tools.api import get_financial_metrics, get_market_cap, search_line_items
 
