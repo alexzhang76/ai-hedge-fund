@@ -15,6 +15,19 @@ EN_STRINGS = {
     "agent_analysis": "AGENT ANALYSIS",
     "trading_decision": "TRADING DECISION",
     
+    # Agent display names
+    "ben_graham": "Ben Graham",
+    "bill_ackman": "Bill Ackman",
+    "cathie_wood": "Cathie Wood",
+    "charlie_munger": "Charlie Munger",
+    "phil_fisher": "Phil Fisher",
+    "stanley_druckenmiller": "Stanley Druckenmiller",
+    "warren_buffett": "Warren Buffett",
+    "technical_analyst": "Technical Analysis",
+    "fundamentals_analyst": "Fundamentals Analysis",
+    "sentiment_analyst": "Sentiment Analysis",
+    "valuation_analyst": "Valuation Analysis",
+    
     # Signal types
     "bullish": "BULLISH",
     "bearish": "BEARISH",
@@ -102,6 +115,19 @@ ZH_STRINGS = {
     "portfolio_strategy": "投资组合策略",
     "agent_analysis": "分析师分析",
     "trading_decision": "交易决策",
+    
+    # Agent display names
+    "ben_graham": "价值投资：Ben Graham",
+    "bill_ackman": "积极主动价值型：Bill Ackman",
+    "cathie_wood": "创新风险型：Cathie Wood",
+    "charlie_munger": "价值投资：Charlie Munger",
+    "phil_fisher": "长期稳定成长型：Phil Fisher",
+    "stanley_druckenmiller": "灵活进取宏观型：Stanley Druckenmiller",
+    "warren_buffett": "价值投资：Warren Buffett",
+    "technical_analyst": "技术分析：Technical Analyst",
+    "fundamentals_analyst": "基本面分析：Fundamentals Analyst",
+    "sentiment_analyst": "情绪分析：Sentiment Analyst",
+    "valuation_analyst": "估值分析：Valuation Analyst",
     
     # Signal types
     "bullish": "看涨",

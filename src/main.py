@@ -17,7 +17,7 @@ from agents.warren_buffett import warren_buffett_agent
 from graph.state import AgentState
 from agents.valuation import valuation_agent
 from utils.display import print_trading_output
-from utils.analysts import ANALYST_ORDER, get_analyst_nodes
+from utils.analysts import ANALYST_ORDER, get_analyst_nodes, get_updated_analyst_order
 from utils.progress import progress
 from llm.models import LLM_ORDER, get_model_info
 from utils.config import config, Language
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     selected_analysts = None
     choices = questionary.checkbox(
         "Select your AI analysts.",
-        choices=[questionary.Choice(display, value=value) for display, value in ANALYST_ORDER],
+        choices=[questionary.Choice(display, value=value) for display, value in get_updated_analyst_order()],
         instruction="\n\nInstructions: \n1. Press Space to select/unselect analysts.\n2. Press 'a' to select/unselect all.\n3. Press Enter when done to run the hedge fund.\n",
         validate=lambda x: len(x) > 0 or "You must select at least one analyst.",
         style=questionary.Style(
